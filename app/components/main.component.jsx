@@ -28,4 +28,4 @@ class MainComponent extends Component{
     }
 }
 
-export default connect(s=>s)(MainComponent);
+export default connect(s=>s,null,null,{withRef:true})(MainComponent);

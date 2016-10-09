@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --require ./app/test/test.helper.js --recursive ./app/test",
-    "test:watch": "npm run test -- --watch",
+    "test": "mocha-webpack --webpack-config webpack.config-test.js \"app/test/**/*.test.js\" --watch --require app/test/globals.js",
     "build": "webpack",
     "start": "npm run build && node server.js"
   },
@@ -42,6 +41,8 @@
     "jquery": "^2.2.1",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
-    "webpack-dev-server": "^1.16.2"
+    "mocha-webpack": "^0.6.0",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-node-externals": "^1.5.4"
   }
 }

@@ -1,26 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import jsdom from 'jsdom';
-import chai, {expect} from 'chai';
-import chaiJquery from 'chai-jquery';
+import {expect} from 'chai';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import reducers from '../reducers';
 
-global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
-global.window = global.document.defaultView;
-global.navigator = global.window.navigator;
-
-const renderComponent = (ComponentClass, props={}, state={})=>{
+const renderComponent = (ComponentClass, state={}, props={})=>{
     let instance = TestUtils.renderIntoDocument(
         <Provider store={createStore(reducers, state)}>
             <ComponentClass {...props} />
         </Provider>
     );
-    return $(ReactDOM.findDOMNode(instance));
+    let children = (type)=> TestUtils.scryRenderedComponentsWithType(instance, type); 
+    return {
+        instance,
+        simulate:(eventName, value)=>{
+            let el = $(ReactDOM.findDOMNode(instance));
+            TestUtils.Simulate[eventName](el.find(value)[0]);
+        },
+        children,
+        wrapped: children(ComponentClass)[0].getWrappedInstance()
+    }
 }
 
-export {renderComponent,expect};
+
+
+
+export {renderComponent, expect};
 
