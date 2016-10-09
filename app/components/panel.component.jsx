@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import {connected} from 'utils';
 
 class PanelComponent extends Component{
     render(){
@@ -17,4 +17,4 @@ class PanelComponent extends Component{
         )        
     }
 }
-export default connect(s=>s)(PanelComponent);
+export default connected(PanelComponent);

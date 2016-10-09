@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PanelComponent from 'panel.component';
-import {connect} from 'react-redux';
+import {connected} from 'utils';
 import {employeeAction} from '../actions/employee.actions';
 
 class MainComponent extends Component{
@@ -28,4 +28,4 @@ class MainComponent extends Component{
     }
 }
 
-export default connect(s=>s,null,null,{withRef:true})(MainComponent);
+export default connected(MainComponent);
