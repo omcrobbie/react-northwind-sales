@@ -9,5 +9,6 @@ global.navigator = global.window.navigator;
 
 global.$ = _$(window);
 chaiJquery(chai, chai.util, $);
+global.expect = chai.expect;
 
 

@@ -4,10 +4,10 @@ import {connected} from 'utils';
 import {employeeAction} from '../actions/employee.actions';
 
 class MainComponent extends Component{
-    handleAdd(){
-        let name = this.refs.name.value;
+    handleAdd = ()=>{
+        let name = this.name.value;
         this.props.dispatch(employeeAction(name));
-        this.refs.name.value = '';
+        this.name.value='';
     }
     render(){
         let {employees} = this.props;
@@ -17,8 +17,8 @@ class MainComponent extends Component{
         return(
             <div className="row">
                 <div className="callout primary">
-                    <input type="text" ref="name"/>
-                    <button className="button" onClick={this.handleAdd.bind(this)}>+Add</button>
+                    <input type="text" ref={name=>this.name = name}/>
+                    <button className="button" onClick={this.handleAdd}>+Add</button>
                 </div>
                 <div>  
                     {panels}

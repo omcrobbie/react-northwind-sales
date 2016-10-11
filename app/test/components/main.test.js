@@ -1,4 +1,4 @@
-import {renderComponent,expect} from '../test.helper';
+import {renderComponent} from '../test.helper';
 import MainComponent from 'main.component';
 import PanelComponent from 'panel.component';
 describe('MainComponent', ()=>{
@@ -17,8 +17,8 @@ describe('MainComponent', ()=>{
         expect(children(PanelComponent).length).to.equal(2);
     });
     it('adds new component', ()=>{
-        let {wrapped, instance, simulate}= renderComponent(MainComponent, state);
-        wrapped.refs.name.value='Davy';
+        let {wrapped, instance, simulate, children}= renderComponent(MainComponent, state);
+        wrapped.name.value = 'Davy';
         simulate('click', 'button');
         expect(instance.store.getState().employees.length).to.equal(3);
     });
