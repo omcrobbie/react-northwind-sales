@@ -16,9 +16,13 @@ const renderComponent = (ComponentClass, state={}, props={})=>{
     let children = (type)=> TestUtils.scryRenderedComponentsWithType(instance, type); 
     return {
         instance,
-        simulate:(eventName, value, idx, _instance = instance)=>{
+        simulate:(eventName, value, idx=0, _instance = instance)=>{
             let el = $(ReactDOM.findDOMNode(_instance));
-            TestUtils.Simulate[eventName](el.find(value)[idx || 0]);
+            TestUtils.Simulate[eventName](el.find(value)[idx]);
+        },
+        find: (_instance, value)=>{
+            let el = $(ReactDOM.findDOMNode(_instance));
+            return el.find(value);
         },
         children,
         wrapped: children(ComponentClass)[0].getWrappedInstance()

@@ -6,13 +6,14 @@ import TestUtils from 'react-addons-test-utils';
 
 describe('PanelComponent', ()=>{
     it('should exist', ()=>{
-        let component = renderComponent(PanelComponent);
+        let component = renderComponent(PanelComponent,undefined, new Employee('charlie'));
         expect(component.instance).to.exist;
     });
     it('should toggle region', ()=>{
-        let {wrapped, simulate} = renderComponent(PanelComponent,undefined, new Employee('charlie'));
-        simulate('click', 'button', 1);
+        let {wrapped, simulate, find} = renderComponent(PanelComponent,undefined, new Employee('charlie'));
+        simulate('click', 'button', 0);
         expect(wrapped.props.regions.n).to.be.true;
+        console.log(find(wrapped, '.pressed'));
     });
     it('should remove employee', ()=>{
         let state = {
@@ -25,6 +26,5 @@ describe('PanelComponent', ()=>{
         let panel = children(PanelComponent)[0];
         simulate('click', 'button',0,panel);
         expect(instance.store.getState().employees.length).to.equal(1);
-
     });
 });
