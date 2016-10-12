@@ -1,6 +1,7 @@
 import {renderComponent} from '../test.helper';
 import MainComponent from 'main.component';
 import PanelComponent from 'panel.component';
+import Employee from 'employee';
 describe('MainComponent', ()=>{
     it('should exist', ()=>{
         let {instance} = renderComponent(MainComponent);
@@ -8,8 +9,8 @@ describe('MainComponent', ()=>{
     });
     let state ={
             employees: [
-                {name: 'charlie', key: '123'},
-                {name: 'bobby', key:'456'}
+                new Employee('charlie'),
+                new Employee('bobby')
             ]
         } 
     it('renders one panel for each employee', ()=>{

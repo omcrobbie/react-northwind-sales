@@ -1,4 +1,4 @@
-import {ADD_EMPLOYEE, UPDATE_EMPLOYEE} from '../actions/types';
+import {ADD_EMPLOYEE, UPDATE_EMPLOYEE, REMOVE_EMPLOYEE} from '../actions/types';
 
 export const employeesReducer = (state=[], action)=>{
     switch(action.type){
@@ -13,6 +13,8 @@ export const employeesReducer = (state=[], action)=>{
                     };
                 }
             });
+        case REMOVE_EMPLOYEE:
+            return state.filter(employee=>employee.key !== action.payload);
         default:
             return state;
     }

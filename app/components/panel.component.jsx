@@ -1,26 +1,30 @@
 import React, {Component} from 'react';
 import {connected} from 'utils';
-import {updateEmployeeAction} from '../actions/employee.actions';
+import {updateEmployeeAction, removeEmployeeAction} from '../actions/employee.actions';
 
 class PanelComponent extends Component{
     constructor(props){
         super(props);
-        this.dispatch = this.props.dispatch;
     }
     toggleRegion = (region)=>{
-        let regions = this.props.regions;
+        let {regions,name, dispatch} = this.props;
         regions[region]= !regions[region];
         let update = {
-            name:this.props.name,
+            name: name,
             regions
         }
-        this.props.dispatch(updateEmployeeAction(update));
+        dispatch(updateEmployeeAction(update));
+    }
+    removeEmployee = ()=>{
+        let {dispatch,name} = this.props;
+        dispatch(removeEmployeeAction(name)); 
     }
     render(){
-        let {name} = this.props;
+        let {name, key, regions} = this.props;
         return (
             <div className="callout columns large-3">
                 <h3>{name}</h3>
+                <button className="button alert" onClick={this.removeEmployee}>Remove</button>
                 <div className="button-group">
                     <button className="button" onClick={()=>this.toggleRegion('n')}>North</button>
                     <button className="button" onClick={()=>this.toggleRegion('s')}>South</button>

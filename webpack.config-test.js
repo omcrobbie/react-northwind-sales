@@ -21,7 +21,8 @@ module.exports = {
             'node_modules',
             './app/components',
             './app/api',
-            './app/utils'
+            './app/utils',
+            './app/models'
         ],
         alias: {
             app: 'app',
