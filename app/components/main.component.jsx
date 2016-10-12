@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import PanelComponent from 'panel.component';
 import {connected} from 'utils';
-import {employeeAction} from '../actions/employee.actions';
+import {addEmployeeAction} from '../actions/employee.actions';
 
 class MainComponent extends Component{
     handleAdd = ()=>{
         let name = this.name.value;
-        this.props.dispatch(employeeAction(name));
+        this.props.dispatch(addEmployeeAction(name));
         this.name.value='';
     }
     render(){
