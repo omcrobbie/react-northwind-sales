@@ -21,20 +21,22 @@ class PanelComponent extends Component{
         dispatch(removeEmployeeAction(name)); 
     }
     render(){
-        let {name, key, regions} = this.props;
+        let {name, regions} = this.props;
         let _regions = Object.keys(regions).map(r=>regions[r]);
-        let toggleState = (idx)=>{
-            return `button ${!_regions[idx] ? 'pressed':''}`; 
-        }
+        let buttons = Object.keys(regions).map((r,i)=>{
+            let attr = {
+                className: `button ${!regions[r] ? 'pressed':''}`,
+                onClick:()=>this.toggleRegion(r),
+                key: i
+            };
+            return (<button {...attr}>{r.toUpperCase()}</button>);
+        });
         return (
             <div className="callout columns large-3">
                 <h3>{name}</h3>
                 <button className='button alert' disabled={_regions.some(r=>r===true)} onClick={this.removeEmployee}>Remove</button>
                 <div className="button-group">
-                    <button className={toggleState(0)} onClick={()=>this.toggleRegion('n')}>North</button>
-                    <button className={toggleState(1)} onClick={()=>this.toggleRegion('s')}>South</button>
-                    <button className={toggleState(2)} onClick={()=>this.toggleRegion('e')}>East</button>
-                    <button className={toggleState(3)} onClick={()=>this.toggleRegion('w')}>West</button>
+                    {buttons}
                 </div>
             </div>
         )        

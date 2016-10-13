@@ -11,8 +11,8 @@ class MainComponent extends Component{
     }
     render(){
         let {employees} = this.props;
-        let panels = employees.map((employee)=>{
-            return (<PanelComponent {...employee}/> )
+        let panels = employees.map((employee, i)=>{
+            return (<PanelComponent {...employee} key={i} /> )
         });
         return(
             <div className="row">

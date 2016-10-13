@@ -12,9 +12,10 @@ export const employeesReducer = (state=[], action)=>{
                         ...action.payload
                     };
                 }
+                return employee;
             });
         case REMOVE_EMPLOYEE:
-            return state.filter(employee=>employee.key !== action.payload);
+            return state.filter(employee=>employee.name !== action.payload);
         default:
             return state;
     }
