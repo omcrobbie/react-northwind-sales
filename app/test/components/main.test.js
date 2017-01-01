@@ -2,7 +2,7 @@ import {renderComponent} from '../test.helper';
 import MainComponent from 'main.component';
 import PanelComponent from 'panel.component';
 import Employee from 'employee';
-describe('MainComponent', ()=>{
+xdescribe('MainComponent', ()=>{
     let state ={
             employees: [
                 new Employee('charlie'),

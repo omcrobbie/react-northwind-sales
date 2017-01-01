@@ -3,7 +3,7 @@ import {connected} from 'utils';
 import {updateEmployeeAction, removeEmployeeAction} from '../actions/employee.actions';
 import cx from 'classnames';
 
-class PanelComponent extends Component{
+export class PanelComponent extends Component{
     constructor(props){
         super(props);
     }

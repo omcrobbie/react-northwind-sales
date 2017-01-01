@@ -5,8 +5,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
     entry: [
-        'script!jquery/dist/jquery.min.js', 
-        'script!foundation-sites/dist/foundation.min.js',
+        'script!jquery/dist/jquery.min.js',
         './app/app.jsx'
         ],
     externals:{
@@ -55,7 +54,8 @@ module.exports = {
             {
                 loader: 'babel-loader',
                 query: {
-                    presets: ['react', 'es2015', 'stage-0']
+                    presets: ['react', 'es2015', 'stage-0'],
+                    plugins:['transform-decorators-legacy']
                 },
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/
