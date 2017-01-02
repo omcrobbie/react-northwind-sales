@@ -24,6 +24,7 @@
     "express": "^4.14.0",
     "firebase": "^3.0.2",
     "foundation-sites": "^6.2.0",
+    "lodash": "^4.17.4",
     "node-sass": "^4.1.1",
     "radium": "^0.18.1",
     "react": "^15.4.1",
@@ -50,6 +51,8 @@
     "mocha": "^3.2.0",
     "mocha-better-spec-reporter": "^3.1.0",
     "mocha-webpack": "^0.7.0",
+    "sinon": "^1.17.7",
+    "sinon-chai": "^2.8.0",
     "webpack-dev-server": "^1.16.2",
     "webpack-node-externals": "^1.5.4"
   }

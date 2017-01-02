@@ -1,4 +1,5 @@
 var nodeExternals = require('webpack-node-externals');
+var webpack = require('webpack');
 
 module.exports = {
     target: 'node',
@@ -16,6 +17,11 @@ module.exports = {
             }
         ]
     },
+    plugins:[
+        new webpack.ProvidePlugin({
+            '_':'lodash'
+        })
+    ],
     resolve: {
         root: __dirname,
         modulesDirectories:[
@@ -30,7 +36,8 @@ module.exports = {
             applicationStyles: 'app/styles/app.scss',
             actions: 'app/actions/actions.jsx',
             reducers: 'app/reducers/reducers.jsx',
-            configureStore: 'app/store/configureStore.jsx'
+            configureStore: 'app/store/configureStore.jsx',
+            lodash: 'node_modules/lodash'
         },
         extensions: ['', '.js', '.jsx']
     }

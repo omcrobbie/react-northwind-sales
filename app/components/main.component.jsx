@@ -6,9 +6,8 @@ import {addEmployeeAction} from '../actions/employee.actions';
 import Radium from 'radium';
 import styles from '../styles/modules/styles';
 
-@connected
 @Radium
-export default class MainComponent extends Component{
+export class MainComponent extends Component{
     handleAdd = ()=>{
         let name = this.name.value;
         if (name){
@@ -34,3 +33,4 @@ export default class MainComponent extends Component{
         )
     }
 }
+export default connected(MainComponent);

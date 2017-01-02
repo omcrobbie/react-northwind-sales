@@ -17,8 +17,9 @@ export class PanelComponent extends Component{
         dispatch(updateEmployeeAction(update));
     }
     removeEmployee = ()=>{
-        let {dispatch,name} = this.props;
-        dispatch(removeEmployeeAction(name)); 
+        let {name,regions} = this.props;
+        if (_.values(regions).every(r=>r===false))
+            this.props.dispatch(removeEmployeeAction(name)); 
     }
     render(){
         let {name, regions} = this.props;
