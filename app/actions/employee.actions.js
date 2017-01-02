@@ -23,3 +23,15 @@ export const removeEmployeeAction = (key)=>{
         payload:key
     };
 }
+
+export const startGetGreeting = ()=>{
+    return (dispatch, store)=>{
+        return setTimeout(()=>{
+            console.log('TIMES UP');
+            dispatch({
+                type: 'GREETING',
+                payload: 'Hello there!'
+            });
+        },5000);
+    }
+}

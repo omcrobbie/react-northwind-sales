@@ -8,17 +8,20 @@ import {createMockStore} from 'redux-test-utils';
 import chai,{expect} from 'chai';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
+import * as redux from 'redux';
 import reducers from '../../reducers';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import {addEmployeeAction} from '../../actions/employee.actions';
+import {addEmployeeAction, startGetGreeting} from '../../actions/employee.actions';
+import thunk from 'redux-thunk';
 chai.use(sinonChai);
 describe('MainComponent', ()=>{
     let state ={
                 employees: [
                     new Employee('charlie'),
                     new Employee('bobby')
-                ]
+                ],
+                greeting:'Hello All!'
             };
     let instance;
     describe('shallow', ()=>{
@@ -34,7 +37,7 @@ describe('MainComponent', ()=>{
             expect(instance.find('Connect(PanelComponent)')).to.have.length(2);
         });
     });
-    describe('mounted', ()=>{
+    describe('shallow with refs', ()=>{
         //  before(()=>{
         //     instance = mount(
         //         <Provider store={createStore(reducers,state)}>
@@ -52,5 +55,26 @@ describe('MainComponent', ()=>{
             expect(spy).calledWith(addEmployeeAction('Davy'));
             //expect(instance.instance().props.employees).to.have.length(2);
         });
+    });
+    describe('mounted', function(){
+        let spy;
+          beforeEach(()=>{
+            
+            //stubbing async methods
+            sinon.stub(MainComponent.prototype, 'componentDidMount').returns();
+            const store = createStore(reducers,state, redux.compose(redux.applyMiddleware(thunk)));
+            spy = sinon.spy(store, 'dispatch');
+            instance = mount(
+                <Provider store={store}>
+                    <C_MainComponent/>
+                </Provider>);
+            
+        });
+         it('should call lifecycle',done=>{
+             //expect(C_MainComponent.prototype.componentDidMount).called;
+            expect(instance.findWhere(n=> n.text()==='Hello All!')).to.have.length(1);
+            expect(spy).not.called;
+            done();
+         });
     });
 });
