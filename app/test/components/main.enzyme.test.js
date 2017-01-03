@@ -30,7 +30,7 @@ describe('MainComponent', ()=>{
         });
         it('should exist', ()=>{
             expect(instance).to.exist;
-            //expect(instance.node.props.employees).to.have.length(2);
+            expect(instance.instance().props.employees).to.have.length(2);
         });
         it('renders one panel for each employee', ()=>{
             //console.log(instance.node);

@@ -14,7 +14,8 @@ module.exports = {
     plugins:[
         new webpack.ProvidePlugin({
             '$':'jquery',
-            'jQuery':'jquery'
+            'jQuery':'jquery',
+            '_':'lodash'
         }),
         new webpack.optimize.UglifyJsPlugin({
             compressor:{
@@ -40,7 +41,8 @@ module.exports = {
             applicationStyles: 'app/styles/app.scss',
             actions: 'app/actions/actions.jsx',
             reducers: 'app/reducers/reducers.jsx',
-            configureStore: 'app/store/configureStore.jsx'
+            configureStore: 'app/store/configureStore.jsx',
+            lodash: 'node_modules/lodash'
 
         },
         extensions: ['', '.js', '.jsx']
