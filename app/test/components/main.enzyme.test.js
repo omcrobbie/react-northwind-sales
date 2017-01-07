@@ -58,12 +58,12 @@ describe('MainComponent', ()=>{
     });
     describe('mounted', function(){
         let spy;
-          beforeEach(()=>{
+          before(()=>{
             
             //stubbing async methods
             sinon.stub(MainComponent.prototype, 'componentDidMount').returns();
             const store = createStore(reducers,state, redux.compose(redux.applyMiddleware(thunk)));
-            spy = sinon.spy(store, 'dispatch');
+            //spy = sinon.spy(store, 'dispatch');
             instance = mount(
                 <Provider store={store}>
                     <C_MainComponent/>
@@ -73,8 +73,15 @@ describe('MainComponent', ()=>{
          it('should call lifecycle',done=>{
              //expect(C_MainComponent.prototype.componentDidMount).called;
             expect(instance.findWhere(n=> n.text()==='Hello All!')).to.have.length(1);
-            expect(spy).not.called;
+            //expect(spy).not.called;
             done();
          });
+         it('should increment add an employee', ()=>{
+             instance.find('input').node.value = 'Davy';
+             instance.findWhere(n=>n.text()=== '+Add').simulate('click');
+             expect(instance.props().store.getState().employees).to.have.length(3);
+             
+         });
+
     });
 });
